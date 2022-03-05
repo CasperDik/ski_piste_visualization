@@ -18,7 +18,7 @@ def slope_heatmap_folium(coords):
         speedOfSegment.append(distanceOfSegment / durationOfSegment.seconds / 1000 * 3600)
 
     df = pd.DataFrame({"lats": lats[1:], "longs": longs[1:], "speed": speedOfSegment})
-    df = df[df["speed"] > 15]
+    df = df[df["speed"] > 24]
     #print(df.head())
 
     m = folium.Map(
@@ -35,6 +35,6 @@ def slope_heatmap_folium(coords):
     ).add_to(m)
 
     # heatmap
-    HeatMap(list(zip(df["lats"], df["longs"])), radius=12, min_opacity=0.5, max_zoom=15).add_to(m)
+    HeatMap(list(zip(df["lats"], df["longs"])), radius=21, min_opacity=0.35).add_to(m)
 
     m.save("slope_heatmap.html")
